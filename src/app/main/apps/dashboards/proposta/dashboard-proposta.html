@@ -1,0 +1,899 @@
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+        <div layout="column" layout-align="space-between">
+            <div class="breadcrumb" layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                <span class="parent">{{vm.formWizard.title}}</span>
+            </div>
+
+            <div class="title" >{{vm.formWizard.title}}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" layout="column">
+
+        <div class="md-title" ng-model="vm.formWizard.title">{{vm.formWizard.title}}</div>
+        <div class="pb-16">
+            Informe os dados do futuro segurado para criação da proposta.
+        </div>
+        <div layout="row">
+
+            <!-- FORM WIZARD -->
+            <ms-form-wizard flex>
+                <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+                <!-- tab 1 -->
+                    <md-tab>
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep1.$invalid">1</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">Seguro</span>
+                            </span>
+                        </md-tab-label>
+
+                        <md-tab-body>
+                            <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                                
+                                <div layout="column" layout-gt-xs="row" flex>
+                                    <md-input-container flex flex-gt-xs="30">
+                                            <label>Tipo Seguro</label>
+                                            <md-select ng-model="vm.formWizard.proposta.seguro.tipo" name="seguroTipo" required>
+                                                <md-option ng-repeat="item in vm.formWizard.tipoSeguroList" value="{{item.nome}}">
+                                                    {{item.nome}}
+                                                </md-option>
+                                            </md-select>
+                                            <div ng-messages="wizardStep1.seguroTipo.$error"
+                                                 ng-show="wizardStep1.seguroTipo.$touched"
+                                                 role="alert">
+                                                <div ng-message="required">
+                                                    <span>Tipo Seguro é obrigatório</span>
+                                                </div>
+                                            </div>
+                                    </md-input-container>
+                                </div>
+
+                                <div layout="column" layout-gt-xs="row" flex>
+                                    <md-input-container flex="20" flex-gt-xs="50">
+                                       <input type="text" name="apolice" ng-model="vm.formWizard.proposta.seguro.apolice"
+                                               placeholder="Nº Apólice" required>
+                                        <div ng-messages="wizardStep1.apolice.$error"
+                                             ng-show="wizardStep1.apolice.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Nº apólice é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="20" flex-gt-xs="50">
+                                       <input type="text" name="ci" ng-model="vm.formWizard.proposta.seguro.ci"
+                                               placeholder="Nº CI" required>
+                                        <div ng-messages="wizardStep1.ci.$error"
+                                             ng-show="wizardStep1.ci.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Nº CI é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="20" flex-gt-xs="50">
+                                        <label>Seguradora</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.seguradora" name="seguradora" required>
+                                            <md-option ng-repeat="item in vm.formWizard.seguradoraList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep1.seguradora.$error"
+                                             ng-show="wizardStep1.seguradora.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Seguradora é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    
+                                    <md-input-container flex="20" flex-gt-xs="50">
+                                    <input type="text" name="bonus" ng-model="vm.formWizard.proposta.seguro.bonus"
+                                               placeholder="Classe de Bônus" required/>
+                                        <div ng-messages="wizardStep1.bonus.$error"
+                                             ng-show="wizardStep1.bonus.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Classe Bônus é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                   
+                                </div>
+
+                                
+                                <div layout="column" layout-gt-xs="row" flex>
+
+                                 <!--<md-content>-->
+                                    
+                                    <md-datepicker name="dtVigenciaDe" ng-model="vm.formWizard.proposta.seguro.dtVigenciaDe" md-placeholder="Início Vigência"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaDe" md-max-date="vm.formWizard.maxDate.dtVigenciaDe" required></md-datepicker>
+
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Fim Vigência"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+
+                                    <md-input-container flex="20" flex-gt-xs="50">
+                                    <label>Houve Sinistro Último ano</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.isSinistro" name="isSinistro" required>
+                                            <md-option ng-repeat="item in vm.formWizard.houveSinistro" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep1.isSinistro.$error"
+                                             ng-show="wizardStep1.isSinistro.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Informação de sinistro é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                
+                               <!-- </md-content>-->
+                                </div>
+                              
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+
+                    <!-- tab 2 -->
+                    <md-tab ng-disabled="wizardStep1.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep2.$invalid">2</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">Titular</span>
+                            </span>
+                        </md-tab-label>
+                        <md-tab-body>
+                            <form name="wizardStep2" class="md-inline-form" ms-form-wizard-form novalidate>
+                                <div layout="column" layout-gt-xs="row" flex>
+                                  <md-checkbox ng-model="vm.formWizard.proposta.titular.isCondutorPrincipal" aria-label="Titular é o Codutor Principal">
+                                  </md-checkbox>
+                                  <md-input-container flex flex-gt-xs="30">
+                                  <label> {{ vm.formWizard.proposta.titular.isCondutorPrincipal ? 'Titular é o Condutor Pricipal' : 'Titula Não é o Condutor Principal' }}
+                                  </label>
+                                  </md-input-container>
+                                </div>
+                                <md-input-container class="md-block">
+                                    <input type="text" name="nome" ng-model="vm.formWizard.proposta.titular.nome"
+                                           placeholder="Nome"
+                                           required>
+                                    <div ng-messages="wizardStep2.nome.$error"
+                                         ng-show="wizardStep2.nome.$dirty"
+                                         role="alert">
+                                        <div ng-message="required">
+                                            <span>Nome é obrigatório</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="rg" ng-model="vm.formWizard.proposta.titular.rg"
+                                               placeholder="RG"
+                                               required>
+                                        <div ng-messages="wizardStep2.rg.$error"
+                                             ng-show="wizardStep2.rg.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>RG é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="10">
+                                        <input type="text" name="orgEmissor" ng-model="vm.formWizard.proposta.titular.orgEmissor"
+                                               placeholder="Orgão Emissor"
+                                               required>
+                                        <div ng-messages="wizardStep2.orgEmissor.$error"
+                                             ng-show="wizardStep2.orgEmissor.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Orgão é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaDe" ng-model="vm.formWizard.proposta.seguro.dtVigenciaDe" md-placeholder="Data Emissão"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaDe" md-max-date="vm.formWizard.maxDate.dtVigenciaDe" required></md-datepicker>
+
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="cpf" ng-model="vm.formWizard.proposta.titular.cpf"
+                                               placeholder="CPF"
+                                               required>
+                                        <div ng-messages="wizardStep2.cpf.$error"
+                                             ng-show="wizardStep2.cpf.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>CPF é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Nascimento"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="profissao" ng-model="vm.formWizard.proposta.titular.profissao"
+                                               placeholder="Profissão"
+                                               required>
+                                        <div ng-messages="wizardStep2.profissao.$error"
+                                             ng-show="wizardStep2.profissao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Profissão é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                 </div>
+                                <div layout="column" layout-gt-xs="row" flex>
+
+                                 <!--<md-content>-->
+                                    <md-input-container flex="20" flex-gt-xs="15">
+                                    <label>Estado Civíl</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.titular.estadoCivil" name="estadoCivil" required>
+                                            <md-option ng-repeat="item in vm.formWizard.estadoCivilList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep1.estadoCivil.$error"
+                                             ng-show="wizardStep1.estadoCivil.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Estado Civíl é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                    <md-input-container flex="20" flex-gt-xs="15">
+                                    <label>Sexo</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.sexoList" name="sexo" required>
+                                            <md-option ng-repeat="item in vm.formWizard.sexoList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep1.sexo.$error"
+                                             ng-show="wizardStep1.sexo.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Informação de sexo é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="30">
+                                        <input type="text" name="habilitacao" ng-model="vm.formWizard.proposta.titular.habilitacao"
+                                               placeholder="Nº Habilitação"
+                                               required>
+                                        <div ng-messages="wizardStep2.profissao.$error"
+                                             ng-show="wizardStep2.profissao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Número da Habilitação é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Validade"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data 1ª Habilitação"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+                                
+                               <!-- </md-content>-->
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="100">
+                                        <input type="text" name="endereco" ng-model="vm.formWizard.proposta.titular.endereco"
+                                               placeholder="Endereço"
+                                               required>
+                                        <div ng-messages="wizardStep2.endereco.$error"
+                                             ng-show="wizardStep2.endereco.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Endereço é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="bairro" ng-model="vm.formWizard.proposta.titular.bairro"
+                                               placeholder="Bairro"
+                                               required>
+                                        <div ng-messages="wizardStep2.bairro.$error"
+                                             ng-show="wizardStep2.bairro.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Bairro é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cidade" ng-model="vm.formWizard.proposta.titular.cidade"
+                                               placeholder="Cidade"
+                                               required>
+                                        <div ng-messages="wizardStep2.cidade.$error"
+                                             ng-show="wizardStep2.cidade.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cidade é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cep" ng-model="vm.formWizard.proposta.titular.cep"
+                                               placeholder="Cep"
+                                               required>
+                                        <div ng-messages="wizardStep2.cep.$error"
+                                             ng-show="wizardStep2.cep.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cep é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="telefone" ng-model="vm.formWizard.proposta.titular.telefone"
+                                               placeholder="Telefone"
+                                               required>
+                                        <div ng-messages="wizardStep2.telefone.$error"
+                                             ng-show="wizardStep2.telefone.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Telefone é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="email" ng-model="vm.formWizard.proposta.titular.email"
+                                               placeholder="Email"
+                                               required>
+                                        <div ng-messages="wizardStep2.email.$error"
+                                             ng-show="wizardStep2.email.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Email é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                    <label>Dados Bancários</label>
+                                    </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="nomeBanco" ng-model="vm.formWizard.proposta.titular.dadosBancarios.nomeBanco"
+                                               placeholder="Nome do Banco"
+                                               >
+                                        <div ng-messages="wizardStep2.nomeBanco.$error"
+                                             ng-show="wizardStep2.nomeBanco.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Nome do Banco é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="agencia" ng-model="vm.formWizard.proposta.titular.dadosBancarios.agencia"
+                                               placeholder="Nº Agência"
+                                               >
+                                        <div ng-messages="wizardStep2.nomeBanco.$error"
+                                             ng-show="wizardStep2.nomeBanco.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Nº Agência é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="5">
+                                        <input type="text" name="dvAgencia" ng-model="vm.formWizard.proposta.titular.dadosBancarios.dvAgencia"
+                                               placeholder="Dígito Verificador da Agência"
+                                               >
+                                        <div ng-messages="wizardStep2.dvAgencia.$error"
+                                             ng-show="wizardStep2.dvAgencia.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Dígito Verificador é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="conta" ng-model="vm.formWizard.proposta.titular.dadosBancarios.conta"
+                                               placeholder="Nº Conta"
+                                               >
+                                        <div ng-messages="wizardStep2.conta.$error"
+                                             ng-show="wizardStep2.conta.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Nº Conta é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                     <md-input-container flex="100" flex-gt-xs="5">
+                                        <input type="text" name="dvConta" ng-model="vm.formWizard.proposta.titular.dadosBancarios.dvConta"
+                                               placeholder="Dígito Verificador da Conta"
+                                               >
+                                        <div ng-messages="wizardStep2.dvConta.$error"
+                                             ng-show="wizardStep2.dvConta.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Dígito Verificador da Conta é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                               
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+
+                    <!-- tab 3 -->
+                    <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep3.$invalid">3</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">Condutor Principal</span>
+                            </span>
+                        </md-tab-label>
+
+                        <md-tab-body>
+
+                            <form name="wizardStep3" class="md-inline-form" ms-form-wizard-form novalidate>
+                                <md-input-container class="md-block">
+                                    <input type="text" name="nome" ng-model="vm.formWizard.proposta.condutorPrincipal.nome"
+                                           placeholder="Nome"
+                                           required>
+                                    <div ng-messages="wizardStep3.nome.$error"
+                                         ng-show="wizardStep3.nome.$dirty"
+                                         role="alert">
+                                        <div ng-message="required">
+                                            <span>Nome é obrigatório</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="rg" ng-model="vm.formWizard.proposta.condutorPrincipal.rg"
+                                               placeholder="RG"
+                                               required>
+                                        <div ng-messages="wizardStep3.rg.$error"
+                                             ng-show="wizardStep3.rg.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>RG é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="10">
+                                        <input type="text" name="orgEmissor" ng-model="vm.formWizard.proposta.condutorPrincipal.orgEmissor"
+                                               placeholder="Orgão Emissor"
+                                               required>
+                                        <div ng-messages="wizardStep3.orgEmissor.$error"
+                                             ng-show="wizardStep3.orgEmissor.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Orgão é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaDe" ng-model="vm.formWizard.proposta.seguro.dtVigenciaDe" md-placeholder="Data Emissão"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaDe" md-max-date="vm.formWizard.maxDate.dtVigenciaDe" required></md-datepicker>
+
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="cpf" ng-model="vm.formWizard.proposta.condutorPrincipal.cpf"
+                                               placeholder="CPF"
+                                               required>
+                                        <div ng-messages="wizardStep3.cpf.$error"
+                                             ng-show="wizardStep3.cpf.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>CPF é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Nascimento"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+
+                                    <md-input-container flex="100" flex-gt-xs="15">
+                                        <input type="text" name="profissao" ng-model="vm.formWizard.proposta.condutorPrincipal.profissao"
+                                               placeholder="Profissão"
+                                               required>
+                                        <div ng-messages="wizardStep3.profissao.$error"
+                                             ng-show="wizardStep3.profissao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Profissão é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                 </div>
+                                <div layout="column" layout-gt-xs="row" flex>
+
+                                 <!--<md-content>-->
+                                    <md-input-container flex="20" flex-gt-xs="15">
+                                    <label>Estado Civíl</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.condutorPrincipal.estadoCivil" name="estadoCivil" required>
+                                            <md-option ng-repeat="item in vm.formWizard.estadoCivilList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep3.estadoCivil.$error"
+                                             ng-show="wizardStep3.estadoCivil.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Estado Civíl é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                    <md-input-container flex="20" flex-gt-xs="15">
+                                    <label>Sexo</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.sexoList" name="sexo" required>
+                                            <md-option ng-repeat="item in vm.formWizard.sexoList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep3.sexo.$error"
+                                             ng-show="wizardStep3.sexo.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Informação de sexo é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="30">
+                                        <input type="text" name="habilitacao" ng-model="vm.formWizard.proposta.condutorPrincipal.habilitacao"
+                                               placeholder="Nº Habilitação"
+                                               required>
+                                        <div ng-messages="wizardStep3.profissao.$error"
+                                             ng-show="wizardStep3.profissao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Número da Habilitação é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Validade"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data 1ª Habilitação"
+                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                        required></md-datepicker>
+                                
+                               <!-- </md-content>-->
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="100">
+                                        <input type="text" name="endereco" ng-model="vm.formWizard.proposta.condutorPrincipal.endereco"
+                                               placeholder="Endereço"
+                                               required>
+                                        <div ng-messages="wizardStep3.endereco.$error"
+                                             ng-show="wizardStep3.endereco.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Endereço é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="bairro" ng-model="vm.formWizard.proposta.condutorPrincipal.bairro"
+                                               placeholder="Bairro"
+                                               required>
+                                        <div ng-messages="wizardStep3.bairro.$error"
+                                             ng-show="wizardStep3.bairro.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Bairro é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cidade" ng-model="vm.formWizard.proposta.condutorPrincipal.cidade"
+                                               placeholder="Cidade"
+                                               required>
+                                        <div ng-messages="wizardStep3.cidade.$error"
+                                             ng-show="wizardStep3.cidade.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cidade é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cep" ng-model="vm.formWizard.proposta.condutorPrincipal.cep"
+                                               placeholder="Cep"
+                                               required>
+                                        <div ng-messages="wizardStep3.cep.$error"
+                                             ng-show="wizardStep3.cep.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cep é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="telefone" ng-model="vm.formWizard.proposta.condutorPrincipal.telefone"
+                                               placeholder="Telefone"
+                                               required>
+                                        <div ng-messages="wizardStep3.telefone.$error"
+                                             ng-show="wizardStep3.telefone.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Telefone é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="email" ng-model="vm.formWizard.proposta.condutorPrincipal.email"
+                                               placeholder="Email"
+                                               required>
+                                        <div ng-messages="wizardStep3.email.$error"
+                                             ng-show="wizardStep3.email.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Email é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- tab 4 -->
+                   
+                    <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep4.$invalid">4</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">V e í c u l o</span>
+                            </span>
+                        </md-tab-label>
+
+
+                        <md-tab-body>
+
+                            <form name="wizardStep4" class="md-inline-form" ms-form-wizard-form novalidate>
+                                <div layout="column" layout-gt-xs="row">
+                                    <md-input-container flex="20" flex-gt-xs="15">
+                                    <label>Situação Financeira</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.veiculo.situacao" name="situacao" required>
+                                            <md-option ng-repeat="item in vm.formWizard.situacaoList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep4.situacao.$error"
+                                             ng-show="wizardStep4.situacao.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Situação Financeira é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="fabricante" ng-model="vm.formWizard.proposta.veiculo.fabricante"
+                                               placeholder="Fabricante"
+                                               required>
+                                        <div ng-messages="wizardStep4.fabricante.$error"
+                                             ng-show="wizardStep4.fabricante.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Fabricante é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="fipe" ng-model="vm.formWizard.proposta.veiculo.fipe"
+                                               placeholder="Código Fipe"
+                                               required>
+                                        <div ng-messages="wizardStep4.fipe.$error"
+                                             ng-show="wizardStep4.fipe.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Código Fipe é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="modelo" ng-model="vm.formWizard.proposta.veiculo.modelo"
+                                               placeholder="Modelo"
+                                               required>
+                                        <div ng-messages="wizardStep4.modelo.$error"
+                                             ng-show="wizardStep4.modelo.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Modelo é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <div layout="column" layout-gt-xs="row">
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="anoFabricacao" ng-model="vm.formWizard.proposta.veiculo.anoFabricacao"
+                                               placeholder="Ano de Fabricação"
+                                               required>
+                                        <div ng-messages="wizardStep4.anoFabricacao.$error"
+                                             ng-show="wizardStep4.anoFabricacao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Ano de Fabricação é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="combustivel" ng-model="vm.formWizard.proposta.veiculo.combustivel"
+                                               placeholder="Combustível"
+                                               required>
+                                        <div ng-messages="wizardStep4.combustivel.$error"
+                                             ng-show="wizardStep4.combustivel.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Combutível é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cor" ng-model="vm.formWizard.proposta.veiculo.cor"
+                                               placeholder="Cor"
+                                               required>
+                                        <div ng-messages="wizardStep4.cor.$error"
+                                             ng-show="wizardStep4.cor.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cor é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="cambio" ng-model="vm.formWizard.proposta.veiculo.cambio"
+                                               placeholder="Câmbio"
+                                               required>
+                                        <div ng-messages="wizardStep4.cambio.$error"
+                                             ng-show="wizardStep4.cambio.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Câmbio é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                                <div layout="column" layout-gt-xs="row">
+
+                                    <md-input-container flex="100" flex-gt-xs="10">
+                                        <input type="text" name="placa" ng-model="vm.formWizard.proposta.veiculo.placa"
+                                               placeholder="Placa"
+                                               required>
+                                        <div ng-messages="wizardStep4.placa.$error"
+                                             ng-show="wizardStep4.placa.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Placa é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="40">
+                                        <input type="text" name="chassi" ng-model="vm.formWizard.proposta.veiculo.chassi"
+                                               placeholder="Chassi"
+                                               required>
+                                        <div ng-messages="wizardStep4.chassi.$error"
+                                             ng-show="wizardStep4.chassi.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Chassi é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="renavan" ng-model="vm.formWizard.proposta.veiculo.renavan"
+                                               placeholder="Renavan"
+                                               required>
+                                        <div ng-messages="wizardStep4.renavan.$error"
+                                             ng-show="wizardStep4.renavan.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Renavan é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container flex="100" flex-gt-xs="30">
+                                        <input type="text" name="banco" ng-model="vm.formWizard.proposta.veiculo.banco"
+                                               placeholder="Banco"
+                                               required>
+                                        <div ng-messages="wizardStep4.banco.$error"
+                                             ng-show="wizardStep4.banco.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Banco é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+                    
+                </md-tabs>
+
+                <div class="navigation" flex layout="row" layout-align="center center">
+                    <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()"
+                               ng-disabled="msWizard.isFirstStep()">
+                        Previous
+                    </md-button>
+                    <div class="steps">
+                        <span ng-repeat="form in msWizard.forms"
+                              ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+                    </div>
+                    <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()"
+                               ng-hide="msWizard.isLastStep()"
+                               ng-disabled="msWizard.currentStepInvalid()">
+                        Next
+                    </md-button>
+                    <md-button class="md-raised md-warn" ng-click="vm.sendForm(); msWizard.resetForm();" ng-show="msWizard.isLastStep()"
+                               ng-disabled="msWizard.formsIncomplete()">
+                        Send
+                    </md-button>
+                </div>
+
+            </ms-form-wizard>
+            <!-- / FORM WIZARD -->
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
