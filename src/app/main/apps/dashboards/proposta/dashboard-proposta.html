@@ -212,8 +212,8 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-datepicker name="dtVigenciaDe" ng-model="vm.formWizard.proposta.seguro.dtVigenciaDe" md-placeholder="Data Emissão"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaDe" md-max-date="vm.formWizard.maxDate.dtVigenciaDe" required></md-datepicker>
+                                    <md-datepicker name="dtEmissao" ng-model="vm.formWizard.proposta.titular.dtEmissao" md-placeholder="Data Emissão"
+                                        md-min-date="vm.formWizard.minDate.dtEmissao" md-max-date="vm.formWizard.maxDate.dtEmissao" required></md-datepicker>
 
                                     <md-input-container flex="100" flex-gt-xs="15">
                                         <input type="text" name="cpf" ng-model="vm.formWizard.proposta.titular.cpf"
@@ -228,8 +228,8 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Nascimento"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                    <md-datepicker name="dtNascimento" ng-model="vm.formWizard.proposta.titular.dtNascimento" md-placeholder="Data Nascimento"
+                                        md-min-date="vm.formWizard.minDate.dtNascimento" md-max-date="vm.formWizard.maxDate.dtNascimento" 
                                         required></md-datepicker>
 
                                     <md-input-container flex="100" flex-gt-xs="15">
@@ -685,7 +685,7 @@
                                 <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
                                     <i class="icon-check s16"></i>
                                 </span>
-                                <span class="ms-form-wizard-step-text">V e í c u l o</span>
+                                <span class="ms-form-wizard-step-text">Perfil Condutor Principal</span>
                             </span>
                         </md-tab-label>
 
@@ -694,6 +694,114 @@
 
                             <form name="wizardStep4" class="md-inline-form" ms-form-wizard-form novalidate>
                                 <div layout="column" layout-gt-xs="row">
+                                  <label>Local de Trabalho</label>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                  <label>Possui Garagem?</label>
+                                  <label>CEP</label>
+                                  <label>Cidade</label>
+                                  <label>UF</label>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                  <label>Outro Endereço</label>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                  <label>Possui Garagem?</label>
+                                  <label>CEP</label>
+                                  <label>Cidade</label>
+                                  <label>UF</label>
+                                </div>
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- tab 5 -->
+                   
+                    <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep5.$invalid">5</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep5.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">Condutor Menor 25</span>
+                            </span>
+                        </md-tab-label>
+
+
+                        <md-tab-body>
+
+                            <form name="wizardStep5" class="md-inline-form" ms-form-wizard-form novalidate>
+                                 <div layout="column" layout-gt-xs="row">
+                                  <label>Nome</label>
+                                  <label>Sexo</label>
+                                  <label>Data de Nascimento</label>
+                                  <label>Nº Habilitação</label>
+                                  <label>Data 1ª Habilitação</label>
+                                </div>
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- tab 6 -->
+                   
+                    <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep6.$invalid">6</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep6.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">Coberturas</span>
+                            </span>
+                        </md-tab-label>
+
+
+                        <md-tab-body>
+
+                            <form name="wizardStep6" class="md-inline-form" ms-form-wizard-form novalidate>
+                                <div layout="column" layout-gt-xs="row">
+                                  <label>Danos Materiais R$</label>
+                                  <label>Danos Pessoais R$</label>
+                                  <label>APP R$</label>
+                                  <label>Assistência 24 Horas</label>
+                                  <label>Até quantos Km?</label>
+                                  <label>Carro Reserva</label>
+                                  <label>Prazo de Carro Reserva</label>
+                                  <label>Proteção de Vidros</label>
+                                  <label>Parabrisa</label>
+                                  <label>Vidro Traseiro</label>
+                                  <label>Vidros Laterais</label>
+                                  <label>Farois</label>
+                                  <label>Lanternas</label>
+                                  <label>Retrovisores</label>
+                                  <label>Km por Mês</label>
+                                </div>
+                            </form>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- tab 7 -->
+                   
+                    <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid || wizardStep5.$invalid || wizardStep6.$invalid">
+                        <md-tab-label>
+                            <span class="ms-form-wizard-step-label">
+                                <span class="ms-form-wizard-step-number md-accent-bg"
+                                      ng-if="wizardStep7.$invalid">7</span>
+                                <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep7.$valid">
+                                    <i class="icon-check s16"></i>
+                                </span>
+                                <span class="ms-form-wizard-step-text">V e í c u l o</span>
+                            </span>
+                        </md-tab-label>
+
+
+                        <md-tab-body>
+
+                            <form name="wizardStep7" class="md-inline-form" ms-form-wizard-form novalidate>
+                                <div layout="column" layout-gt-xs="row">
                                     <md-input-container flex="20" flex-gt-xs="15">
                                     <label>Situação Financeira</label>
                                         <md-select ng-model="vm.formWizard.proposta.seguro.veiculo.situacao" name="situacao" required>
@@ -701,8 +809,8 @@
                                                 {{item.nome}}
                                             </md-option>
                                         </md-select>
-                                        <div ng-messages="wizardStep4.situacao.$error"
-                                             ng-show="wizardStep4.situacao.$touched"
+                                        <div ng-messages="wizardStep7.situacao.$error"
+                                             ng-show="wizardStep7.situacao.$touched"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Situação Financeira é obrigatório</span>
@@ -713,8 +821,8 @@
                                         <input type="text" name="fabricante" ng-model="vm.formWizard.proposta.veiculo.fabricante"
                                                placeholder="Fabricante"
                                                required>
-                                        <div ng-messages="wizardStep4.fabricante.$error"
-                                             ng-show="wizardStep4.fabricante.$dirty"
+                                        <div ng-messages="wizardStep7.fabricante.$error"
+                                             ng-show="wizardStep7.fabricante.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Fabricante é obrigatório</span>
@@ -726,8 +834,8 @@
                                         <input type="text" name="fipe" ng-model="vm.formWizard.proposta.veiculo.fipe"
                                                placeholder="Código Fipe"
                                                required>
-                                        <div ng-messages="wizardStep4.fipe.$error"
-                                             ng-show="wizardStep4.fipe.$dirty"
+                                        <div ng-messages="wizardStep7.fipe.$error"
+                                             ng-show="wizardStep7.fipe.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Código Fipe é obrigatório</span>
@@ -739,8 +847,8 @@
                                         <input type="text" name="modelo" ng-model="vm.formWizard.proposta.veiculo.modelo"
                                                placeholder="Modelo"
                                                required>
-                                        <div ng-messages="wizardStep4.modelo.$error"
-                                             ng-show="wizardStep4.modelo.$dirty"
+                                        <div ng-messages="wizardStep7.modelo.$error"
+                                             ng-show="wizardStep7.modelo.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Modelo é obrigatório</span>
@@ -756,8 +864,8 @@
                                         <input type="text" name="anoFabricacao" ng-model="vm.formWizard.proposta.veiculo.anoFabricacao"
                                                placeholder="Ano de Fabricação"
                                                required>
-                                        <div ng-messages="wizardStep4.anoFabricacao.$error"
-                                             ng-show="wizardStep4.anoFabricacao.$dirty"
+                                        <div ng-messages="wizardStep7.anoFabricacao.$error"
+                                             ng-show="wizardStep7.anoFabricacao.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Ano de Fabricação é obrigatório</span>
@@ -769,8 +877,8 @@
                                         <input type="text" name="combustivel" ng-model="vm.formWizard.proposta.veiculo.combustivel"
                                                placeholder="Combustível"
                                                required>
-                                        <div ng-messages="wizardStep4.combustivel.$error"
-                                             ng-show="wizardStep4.combustivel.$dirty"
+                                        <div ng-messages="wizardStep7.combustivel.$error"
+                                             ng-show="wizardStep7.combustivel.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Combutível é obrigatório</span>
@@ -782,8 +890,8 @@
                                         <input type="text" name="cor" ng-model="vm.formWizard.proposta.veiculo.cor"
                                                placeholder="Cor"
                                                required>
-                                        <div ng-messages="wizardStep4.cor.$error"
-                                             ng-show="wizardStep4.cor.$dirty"
+                                        <div ng-messages="wizardStep7.cor.$error"
+                                             ng-show="wizardStep7.cor.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Cor é obrigatório</span>
@@ -795,8 +903,8 @@
                                         <input type="text" name="cambio" ng-model="vm.formWizard.proposta.veiculo.cambio"
                                                placeholder="Câmbio"
                                                required>
-                                        <div ng-messages="wizardStep4.cambio.$error"
-                                             ng-show="wizardStep4.cambio.$dirty"
+                                        <div ng-messages="wizardStep7.cambio.$error"
+                                             ng-show="wizardStep7.cambio.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Câmbio é obrigatório</span>
@@ -812,8 +920,8 @@
                                         <input type="text" name="placa" ng-model="vm.formWizard.proposta.veiculo.placa"
                                                placeholder="Placa"
                                                required>
-                                        <div ng-messages="wizardStep4.placa.$error"
-                                             ng-show="wizardStep4.placa.$dirty"
+                                        <div ng-messages="wizardStep7.placa.$error"
+                                             ng-show="wizardStep7.placa.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Placa é obrigatório</span>
@@ -825,8 +933,8 @@
                                         <input type="text" name="chassi" ng-model="vm.formWizard.proposta.veiculo.chassi"
                                                placeholder="Chassi"
                                                required>
-                                        <div ng-messages="wizardStep4.chassi.$error"
-                                             ng-show="wizardStep4.chassi.$dirty"
+                                        <div ng-messages="wizardStep7.chassi.$error"
+                                             ng-show="wizardStep7.chassi.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Chassi é obrigatório</span>
@@ -838,8 +946,8 @@
                                         <input type="text" name="renavan" ng-model="vm.formWizard.proposta.veiculo.renavan"
                                                placeholder="Renavan"
                                                required>
-                                        <div ng-messages="wizardStep4.renavan.$error"
-                                             ng-show="wizardStep4.renavan.$dirty"
+                                        <div ng-messages="wizardStep7.renavan.$error"
+                                             ng-show="wizardStep7.renavan.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Renavan é obrigatório</span>
@@ -851,8 +959,8 @@
                                         <input type="text" name="banco" ng-model="vm.formWizard.proposta.veiculo.banco"
                                                placeholder="Banco"
                                                required>
-                                        <div ng-messages="wizardStep4.banco.$error"
-                                             ng-show="wizardStep4.banco.$dirty"
+                                        <div ng-messages="wizardStep7.banco.$error"
+                                             ng-show="wizardStep7.banco.$dirty"
                                              role="alert">
                                             <div ng-message="required">
                                                 <span>Banco é obrigatório</span>
@@ -865,6 +973,10 @@
                             </form>
                         </md-tab-body>
                     </md-tab>
+
+                   
+
+
                     
                 </md-tabs>
 
