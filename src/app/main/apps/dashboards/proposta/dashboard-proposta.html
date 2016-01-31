@@ -292,11 +292,11 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Validade"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                    <md-datepicker name="dtValidade" ng-model="vm.formWizard.proposta.titular.dtValidade" md-placeholder="Data Validade"
+                                        md-min-date="vm.formWizard.minDate.dtValidade" md-max-date="vm.formWizard.maxDate.dtValidade" 
                                         required></md-datepicker>
-                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data 1ª Habilitação"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                    <md-datepicker name="dtPrimeiraHabilitacao" ng-model="vm.formWizard.proposta.titular.dtPrimeiraHabilitacao" md-placeholder="Data 1ª Habilitação"
+                                        md-min-date="vm.formWizard.minDate.dtPrimeiraHabilitacao" md-max-date="vm.formWizard.maxDate.dtPrimeiraHabilitacao" 
                                         required></md-datepicker>
                                 
                                <!-- </md-content>-->
@@ -586,11 +586,11 @@
                                         </div>
                                     </md-input-container>
 
-                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data Validade"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.condutorPrincipal.dtValidade" md-placeholder="Data Validade"
+                                        md-min-date="vm.formWizard.minDate.dtValidade" md-max-date="vm.formWizard.maxDate.dtValidade" 
                                         required></md-datepicker>
-                                    <md-datepicker name="dtVigenciaAte" ng-model="vm.formWizard.proposta.seguro.dtVigenciaAte" md-placeholder="Data 1ª Habilitação"
-                                        md-min-date="vm.formWizard.minDate.dtVigenciaAte" md-max-date="vm.formWizard.maxDate.dtVigenciaAte" 
+                                    <md-datepicker name="dtPrimeiraHabilitacao" ng-model="vm.formWizard.proposta.condutorPrincipal.dtPrimeiraHabilitacao" md-placeholder="Data 1ª Habilitação"
+                                        md-min-date="vm.formWizard.minDate.dtPrimeiraHabilitacao" md-max-date="vm.formWizard.maxDate.dtPrimeiraHabilitacao" 
                                         required></md-datepicker>
                                 
                                <!-- </md-content>-->
@@ -694,23 +694,136 @@
 
                             <form name="wizardStep4" class="md-inline-form" ms-form-wizard-form novalidate>
                                 <div layout="column" layout-gt-xs="row">
-                                  <label>Local de Trabalho</label>
+                                  <md-input-container flex="100" flex-gt-xs="40">
+                                        <input type="text" name="condutorPrincipal.perfil.enderecoTrabalho" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.enderecoTrabalho"
+                                               placeholder="Local Trabalho"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.enderecoTrabalho.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.enderecoTrabalho.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Local de Trabalho</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                     <md-input-container flex="100" flex-gt-xs="30">
+                                        <input type="text" name="condutorPrincipal.perfil.cidade" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.cidade"
+                                               placeholder="Cidade Local Trabalho"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.cidade.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.cidade.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cidade Local de Trabalho</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="condutorPrincipal.perfil.cep" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.cep"
+                                               placeholder="Cep"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.cep.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.cep.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cep Local de Trabalho</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                     <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="condutorPrincipal.perfil.uf" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.uf"
+                                               placeholder="UF"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.uf.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.uf.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>UF Local de Trabalho</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="30">
+                                    <label>Possui Garagem?</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.condutorPrincipal.perfil.isGaragemTrabalho" name="condutorPrincipal.isGaragemTrabalho" required>
+                                            <md-option ng-repeat="item in vm.formWizard.isGaragemList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.isGaragemTrabalho.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.isGaragemTrabalho.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Se Possui Garagem Trabalho é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
                                 </div>
                                 <div layout="column" layout-gt-xs="row">
-                                  <label>Possui Garagem?</label>
-                                  <label>CEP</label>
-                                  <label>Cidade</label>
-                                  <label>UF</label>
+                                  <md-input-container flex="100" flex-gt-xs="40">
+                                        <input type="text" name="condutorPrincipal.perfil.enderecoTrabalho2" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.enderecoTrabalho2"
+                                               placeholder="Local Trabalho 2"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.enderecoTrabalho2.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.enderecoTrabalho2.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Local de Trabalho 2</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                     <md-input-container flex="100" flex-gt-xs="30">
+                                        <input type="text" name="condutorPrincipal.perfil.cidade2" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.cidade2"
+                                               placeholder="Cidade Local Trabalho 2"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.cidade2.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.cidade2.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cidade Local de Trabalho 2</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="condutorPrincipal.perfil.cep2" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.cep2"
+                                               placeholder="Cep 2"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.cep2.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.cep2.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Cep Local de Trabalho 2</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                     <md-input-container flex="100" flex-gt-xs="20">
+                                        <input type="text" name="condutorPrincipal.perfil.uf2" ng-model="vm.formWizard.proposta.condutorPrincipal.perfil.uf2"
+                                               placeholder="UF 2"
+                                               required>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.uf2.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.uf2.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>UF Local de Trabalho 2</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="30">
+                                    <label>Possui Garagem?</label>
+                                        <md-select ng-model="vm.formWizard.proposta.seguro.condutorPrincipal.perfil.isGaragemTrabalho2" name="condutorPrincipal.perfil.isGaragemTrabalho2" required>
+                                            <md-option ng-repeat="item in vm.formWizard.isGaragemList" value="{{item.nome}}">
+                                                {{item.nome}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep4.condutorPrincipal.perfil.isGaragemTrabalho2.$error"
+                                             ng-show="wizardStep4.condutorPrincipal.perfil.isGaragemTrabalho2.$touched"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Se Possui Garagem Trabalho é obrigatório</span>
+                                            </div>
+                                        </div>  
+                                    </md-input-container>
                                 </div>
-                                <div layout="column" layout-gt-xs="row">
-                                  <label>Outro Endereço</label>
-                                </div>
-                                <div layout="column" layout-gt-xs="row">
-                                  <label>Possui Garagem?</label>
-                                  <label>CEP</label>
-                                  <label>Cidade</label>
-                                  <label>UF</label>
-                                </div>
+                                
                             </form>
                         </md-tab-body>
                     </md-tab>
@@ -734,11 +847,60 @@
 
                             <form name="wizardStep5" class="md-inline-form" ms-form-wizard-form novalidate>
                                  <div layout="column" layout-gt-xs="row">
-                                  <label>Nome</label>
-                                  <label>Sexo</label>
-                                  <label>Data de Nascimento</label>
-                                  <label>Nº Habilitação</label>
-                                  <label>Data 1ª Habilitação</label>
+                                     <md-input-container flex="100" flex-gt-xs="70">
+                                      <input type="text" name="menor.nome" ng-model="vm.formWizard.proposta.menor.nome"
+                                             placeholder="Nome"
+                                             required>
+                                      <div ng-messages="wizardStep5.nome.$error"
+                                           ng-show="wizardStep5.nome.$dirty"
+                                           role="alert">
+                                          <div ng-message="required">
+                                              <span>Nome é obrigatório</span>
+                                          </div>
+                                      </div>
+                                      </md-input-container>
+
+                                      <md-input-container flex="100" flex-gt-xs="15">
+                                      <label>Sexo</label>
+                                      <md-select ng-model="vm.formWizard.proposta.seguro.menor.sexo" name="sexo" required>
+                                                  <md-option ng-repeat="item in vm.formWizard.sexoList" value="{{item.nome}}">
+                                                      {{item.nome}}
+                                                  </md-option>
+                                              </md-select>
+                                              <div ng-messages="wizardStep5.sexo.$error"
+                                                   ng-show="wizardStep5
+                                                   .sexo.$touched"
+                                                   role="alert">
+                                                  <div ng-message="required">
+                                                      <span>Informação de sexo é obrigatório</span>
+                                                  </div>
+                                              </div>  
+                                      </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-xs="row">
+                                   <md-input-container flex="100" flex-gt-xs="15">
+                                    <md-datepicker name="dtNascimento" ng-model="vm.formWizard.proposta.menor.dtNascimento" md-placeholder="Data Nascimento"
+                                            md-min-date="vm.formWizard.minDate.dtNascimento" md-max-date="vm.formWizard.maxDate.dtNascimento" 
+                                            required>
+                                    </md-datepicker>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                        <input type="text" name="habilitacao" ng-model="vm.formWizard.proposta.menor.habilitacao"
+                                               placeholder="Nº Habilitação"
+                                               required>
+                                        <div ng-messages="wizardStep2.profissao.$error"
+                                             ng-show="wizardStep2.profissao.$dirty"
+                                             role="alert">
+                                            <div ng-message="required">
+                                                <span>Número da Habilitação é obrigatório</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container flex="100" flex-gt-xs="25">
+                                    <md-datepicker name="dtPrimeiraHabilitacao" ng-model="vm.formWizard.proposta.menor.dtPrimeiraHabilitacao" md-placeholder="Data 1ª Habilitação"
+                                        md-min-date="vm.formWizard.minDate.dtPrimeiraHabilitacao" md-max-date="vm.formWizard.maxDate.dtPrimeiraHabilitacao" 
+                                        required></md-datepicker>
+                                    </md-input-container>
                                 </div>
                             </form>
                         </md-tab-body>

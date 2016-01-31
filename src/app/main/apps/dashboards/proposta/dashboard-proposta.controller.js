@@ -113,13 +113,20 @@
     /**
      * Perfil do Condutor Principal
      */
-    function Perfil(id, enderecoTrabalho, isGaragem, cep, cidade, uf){
+    function Perfil(id, enderecoTrabalho, isGaragemTrabalho, cep, cidade, uf,
+        enderecoTrabalho2, isGaragemTrabalho2, cep2, cidade2, uf2){
         this.id = id;
         this.enderecoTrabalho = enderecoTrabalho;
-        this.isGaragem = isGaragem;
+        this.isGaragemTrabalho = isGaragemTrabalho;
         this.cep = cep;
         this.cidade = cidade; 
         this.uf = uf;
+        this.enderecoTrabalho2 = enderecoTrabalho2;
+        this.isGaragemTrabalho2 = isGaragemTrabalho2;
+        this.cep2 = cep2;
+        this.cidade2 = cidade2; 
+        this.uf2 = uf2;
+
     }
 
     /**
@@ -200,6 +207,11 @@
         });
 
         vm.formWizard.houveSinistro = ('Sim Não').split(' ').map(function (houve)
+        {
+            return {nome: houve};
+        });
+
+        vm.formWizard.isGaragemList = ('Sim Não').split(' ').map(function (houve)
         {
             return {nome: houve};
         });
